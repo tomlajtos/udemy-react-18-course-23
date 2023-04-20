@@ -1,12 +1,10 @@
 import about from '../images/about.jpeg'
+import Title from './Title';
 
 const About = () => {
   return (
     <section className="section" id="about">
-      <div className="section-title">
-        <h2>about <span>us</span></h2>
-      </div>
-
+    <Title text1="about" text2="us"/>
       <div className="section-center about-center">
         <div className="about-img">
           <img
