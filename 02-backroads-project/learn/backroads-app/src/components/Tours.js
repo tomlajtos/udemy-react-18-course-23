@@ -16,9 +16,9 @@ const Tours = () => {
               <div className="tour-title"> <h4>{tour.title}</h4> </div>
               <p> {tour.summary} </p>
               <div className="tour-footer">
-                <p> <span><i className="fas fa-map"></i></span> {tour.destination} </p>
-                <p>{tour.duration}</p>
-                <p>{tour.price}</p>
+                <p> <span><i className="fas fa-map"></i></span>{' '}{tour.destination}</p>
+                <p>{tour.duration} days</p>
+                <p>from ${tour.price}</p>
               </div>
             </div>
           </article>)}

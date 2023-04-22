@@ -46,8 +46,8 @@ export const tours = [
     summary: ' lorem ipsum dolor sit amet, consectetur adipisicing elit. cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis. ',
     icon: 'fas fa-map',
     destination: 'china',
-    duration: '6 days',
-    price: 'from $2100',
+    duration: 6,
+    price: 2100,
   },
   {
     id: 2,
@@ -57,8 +57,8 @@ export const tours = [
     summary: ' lorem ipsum dolor sit amet, consectetur adipisicing elit. cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis. ',
     icon: 'fas fa-map',
     destination: 'indonesia',
-    duration: '11 days',
-    price: 'from $1400',
+    duration: 11,
+    price: 1400,
   },
   {
     id: 3,
@@ -68,8 +68,8 @@ export const tours = [
     summary: ' lorem ipsum dolor sit amet, consectetur adipisicing elit. cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis. ',
     icon: 'fas fa-map',
     destination: 'hong kong',
-    duration: '8 days',
-    price: 'from $5000',
+    duration: 8,
+    price: 5000,
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ export const tours = [
     summary: ' lorem ipsum dolor sit amet, consectetur adipisicing elit. cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis. ',
     icon: 'fas fa-map',
     destination: 'kenya',
-    duration: '8 days',
-    price: 'from $3300',
+    duration: 8,
+    price: 3300,
   },
-  ];
+];
