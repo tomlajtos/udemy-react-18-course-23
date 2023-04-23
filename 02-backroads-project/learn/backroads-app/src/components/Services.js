@@ -6,7 +6,11 @@ const Services = () => {
   return (
     <section className="section services" id="services">
       <Title text1="our" text2="services" />
-      <Service services={services} />
+      <div className="section-center services-center">
+        {services.map(service =>
+          <Service key={service.id} {...service} />
+        )}
+      </div>
     </section>
   );
 };

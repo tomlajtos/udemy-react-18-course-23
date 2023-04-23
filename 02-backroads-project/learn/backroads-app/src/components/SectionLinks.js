@@ -1,12 +1,13 @@
-const SectionLinks = ({links, linkClass, listClass, listId}) => {
+import SectionLink from "./SectionLink";
+
+const SectionLinks = ({ links, linkClass, listClass, listId }) => {
   return (
     <ul className={listClass} id={listId}>
       {links.map(link =>
-        <li key={link.id}>
-          <a href={link.href} className={linkClass}> {link.text} </a>
-        </li>)}
+        <SectionLink key={link.id} linkClass={linkClass} {...link} />)}
     </ul>
-  )
-}
+
+  );
+};
 
 export default SectionLinks;

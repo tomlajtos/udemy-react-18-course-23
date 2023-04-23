@@ -1,7 +1,7 @@
 import logo from '../images/logo.svg'
 import { pageLinks } from '../data';
 import { socialLinks } from '../data';
-import SocialIcons from './SocialIcons';
+import SocialLinks from './SocialLinks';
 import SectionLinks from './SectionLinks';
 
 const Navbar = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
           </button>
         </div>
         <SectionLinks links={pageLinks} linkClass="nav-link" listClass="nav-links" listId="nav-links" />
-        <SocialIcons links={socialLinks} listClass="nav-icons" linkClass="nav-icon" />
+        <SocialLinks links={socialLinks} listClass="nav-icons" linkClass="nav-icon" />
       </div>
     </nav>
   );
