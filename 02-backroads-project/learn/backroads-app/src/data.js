@@ -83,3 +83,7 @@ export const tours = [
     price: 3300,
   },
 ];
+
+export const footerLinks = [...pageLinks.slice(0,3),
+    { id: 4, href: '#featured', text: 'featured' },
+];
