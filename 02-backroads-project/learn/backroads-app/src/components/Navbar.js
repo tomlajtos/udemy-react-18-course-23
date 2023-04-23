@@ -14,7 +14,7 @@ const Navbar = () => {
             <i className="fas fa-bars"></i>
           </button>
         </div>
-        < SectionLinks links={pageLinks} linkClass="nav-link" listClass="nav-links" listId="nav-links" />
+        <SectionLinks links={pageLinks} linkClass="nav-link" listClass="nav-links" listId="nav-links" />
         <SocialIcons links={socialLinks} listClass="nav-icons" linkClass="nav-icon" />
       </div>
     </nav>
