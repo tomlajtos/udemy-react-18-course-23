@@ -1,17 +1,16 @@
-# Udemy - React 18 Tutorial and Projects Course (2023) - by [@John Smilga](https://www.udemy.com/course/react-tutorial-and-projects-course/#instructor-1)
+# Udemy - React 18 Tutorial and Projects Course (2023) - by [John Smilga](https://www.udemy.com/course/react-tutorial-and-projects-course/#instructor-1)
 This is a copy of the course repo that I use for my studies.
 
 ## See the content of the original README below:
-### React Course
+### *React Course*
+*The content is part of my React Course. If you enjoy the content and my teaching style, you can always enroll in the full course (link below)*
 
-The content is part of my React Course. If you enjoy the content and my teaching style, you can always enroll in the full course (link below)
+[*My React Course*](https://www.udemy.com/course/react-tutorial-and-projects-course/?referralCode=FEE6A921AF07E2563CEF)
 
-[My React Course](https://www.udemy.com/course/react-tutorial-and-projects-course/?referralCode=FEE6A921AF07E2563CEF)
+### *All My Courses*
 
-### All My Courses
+[*Project Base Web Dev Courses*](https://www.johnsmilga.com/)
 
-[Project Based Web Dev Courses](https://www.johnsmilga.com/)
+#### *Support*
 
-#### Support
-
-Don't want to enroll in the course, but still find the Content Useful? [You can always buy me a coffee](https://www.buymeacoffee.com/johnsmilga) and/or "star" this repo :)
+*Don't want to enroll in the course, but still find the Content Useful? [You can always buy me a coffee](https://www.buymeacoffee.com/johnsmilga) and/or "star" this repo :)*
