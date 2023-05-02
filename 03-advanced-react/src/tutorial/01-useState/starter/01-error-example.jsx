@@ -24,7 +24,7 @@ const ErrorExample = () => {
         }}
         onClick={clickFn}
       >
-        Click me daddy!
+        Click Cick Click!
       </button>
     </>
   );
