@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { data } from "../../../data.js";
+import "./useState-array.css";
 const removedData = [];
 
 const UseStateArray = () => {

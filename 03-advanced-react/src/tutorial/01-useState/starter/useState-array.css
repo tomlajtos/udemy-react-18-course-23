@@ -1,0 +1,8 @@
+.users {
+  margin: "40px auto 20px auto";
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+}
