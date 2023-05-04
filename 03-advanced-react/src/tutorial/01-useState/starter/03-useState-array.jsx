@@ -1,34 +1,37 @@
 import { useState } from "react";
 import { data } from "../../../data.js";
 import "./useState-array.css";
-const removedData = [];
+// const removedData = [];
 
 const UseStateArray = () => {
   const [users, setUsers] = useState(data);
+  const [removedUsers, setRemovedUsers] = useState([]);
 
   // handler functions, onClick
   const clearUsers = () => {
-    removedData.push(...data.splice(0, data.length));
-    setUsers([...data]);
+    setUsers(users.filter((user) => !user));
+    setRemovedUsers(removedUsers.concat(users.filter((user) => user)));
   };
   const restoreUsers = () => {
-    data.push(...removedData.splice(0, removedData.length));
-    setUsers([...data]);
+    setRemovedUsers(removedUsers.filter((user) => !user));
+    setUsers(users.concat(removedUsers.filter((user) => user)));
   };
-  const removeUser = (i) => {
-    removedData.push(...data.splice(i, 1));
-    setUsers([...data]);
+  const removeUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+    setRemovedUsers(
+      removedUsers.concat(users.filter((user) => user.id === id))
+    );
   };
-  const restoreUser = (i) => {
-    data.push(...removedData.splice(i, 1));
-    setUsers([...data]);
+  const restoreUser = (id) => {
+    setRemovedUsers(removedUsers.filter((user) => user.id !== id));
+    setUsers(users.concat(removedUsers.filter((user) => user.id === id)));
   };
   return (
     <>
       <h2>useState array challenge</h2>
 
       <ul className="users">
-        {users.map(({ id, name }, index) => {
+        {users.map(({ id, name }) => {
           return (
             <li key={id}>
               <h3>{name}</h3>
@@ -36,7 +39,7 @@ const UseStateArray = () => {
               <button
                 type="button"
                 className="btn"
-                onClick={() => removeUser(index)}
+                onClick={() => removeUser(id)}
               >
                 remove
               </button>
@@ -52,7 +55,7 @@ const UseStateArray = () => {
       <hr className="hr" />
 
       <ul className="users removedUsers">
-        {removedData.map(({ id, name }, index) => {
+        {removedUsers.map(({ id, name }) => {
           return (
             <li key={id}>
               <h3>{name}</h3>
@@ -60,7 +63,7 @@ const UseStateArray = () => {
               <button
                 type="button"
                 className="btn"
-                onClick={() => restoreUser(index)}
+                onClick={() => restoreUser(id)}
               >
                 restore
               </button>
