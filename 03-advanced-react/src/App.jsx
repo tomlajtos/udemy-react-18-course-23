@@ -1,4 +1,4 @@
-import Starter from "./tutorial/01-useState/starter/05-useState-gotcha";
+import Starter from "./tutorial/01-useState/starter/06-useState-setTimeout.jsx";
 
 function App() {
   return (
