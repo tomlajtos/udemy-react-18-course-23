@@ -1,24 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const MultipleEffects = () => {
   const [value, setValue] = useState(0);
   const [secondValue, setSecondValue] = useState(0);
 
-  // useEffect(() => {
-  //   console.log('hello from first useEffect');
-  // }, []);
+  // we can add the variable name from useState to the argument-array
+  // and when the value state changes and the coresonding component re-renders (and the also at the first render) the useEffect will run
+  useEffect(() => {
+    console.log("first button was clicked");
+  }, [value]);
 
-  // useEffect(() => {
-  //   console.log('hello from second useEffect');
-  // }, []);
+  useEffect(() => {
+    console.log("second useEffect after second button click");
+  }, [secondValue]);
   return (
     <div>
       <h1>value : {value}</h1>
-      <button className='btn' onClick={() => setValue(value + 1)}>
+      <button className="btn" onClick={() => setValue(value + 1)}>
         value
       </button>
       <h1>second value : {secondValue}</h1>
-      <button className='btn' onClick={() => setSecondValue(secondValue + 1)}>
+      <button className="btn" onClick={() => setSecondValue(secondValue + 1)}>
         second value
       </button>
     </div>
