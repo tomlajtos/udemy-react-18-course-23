@@ -17,7 +17,6 @@ const MultipleReturnsBasics = () => {
   return (
     <>
       <h2>Multiple Returns Basics</h2>
-      <div>yo</div>
     </>
   );
 };
