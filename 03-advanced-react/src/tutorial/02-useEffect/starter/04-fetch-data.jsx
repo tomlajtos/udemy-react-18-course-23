@@ -1,15 +1,18 @@
 import "./04-fetch-data.css";
 import { useState, useEffect } from "react";
 
-const url = "https://api.github.com/users";
+const url = "https://avi.github.com/users";
 
 const FetchData = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const getUsers = async () => {
-      const response = await fetch(url);
-      // const data = await response.json();
-      setUsers(await response.json());
+      try {
+        const response = await fetch(url);
+        setUsers(await response.json());
+      } catch (error) {
+        console.log(error);
+      }
     };
     getUsers();
   }, []);
