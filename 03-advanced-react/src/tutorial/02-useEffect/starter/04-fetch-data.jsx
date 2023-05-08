@@ -1,3 +1,4 @@
+import "./04-fetch-data.css";
 import { useState, useEffect } from "react";
 
 const url = "https://api.github.com/users";
@@ -16,13 +17,14 @@ const FetchData = () => {
   return (
     <>
       <h2>fetch data example</h2>
+
+      <h3>github users</h3>
       <ul>
-        <h2>users list</h2>
         {users.map((user) => (
-          <li key={user.id}>
-            <img src={user.avatar_url} alt={user.login} />
-            <h3>{user.login}</h3>
-            <a href={user.html_url}>link</a>
+          <li className="user" key={user.id}>
+            <img className="avatar" src={user.avatar_url} alt={user.login} />
+            <h4>{user.login}</h4>
+            <a href={user.html_url}>github profile</a>
           </li>
         ))}
       </ul>
