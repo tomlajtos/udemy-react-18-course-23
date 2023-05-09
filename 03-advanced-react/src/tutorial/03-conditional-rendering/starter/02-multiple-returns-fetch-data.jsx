@@ -21,6 +21,7 @@ const MultipleReturnsFetchData = () => {
       setIsLoading(false);
     })();
   }, []);
+
   /** REMINDER : Order Matters !!!
    * code is executed top to bottom so condition for isLoading
    * should come before the jsx.
@@ -32,11 +33,28 @@ const MultipleReturnsFetchData = () => {
   if (isError) {
     return <h2>There was an error...</h2>;
   }
-
+  console.log(user);
   return (
     <>
-      <h2>Fetch Data </h2>
-      <div></div>
+      <article
+        style={{
+          margin: "50px auto",
+          width: "350px",
+          height: "450px",
+          padding: "20px",
+          backgroundColor: "white",
+          borderRadius: "20px",
+        }}
+      >
+        <img
+          style={{ marginBottom: "20px", width: "120px", borderRadius: "15px" }}
+          src={user.avatar_url}
+          alt={user.name}
+        />
+        <h2>{user.name}</h2>
+        <p style={{ fontSize: "1.25rem" }}>works at: {user.company}</p>
+        <p>{user.bio}</p>
+      </article>
     </>
   );
 };
