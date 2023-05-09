@@ -11,7 +11,6 @@ const MultipleReturnsFetchData = () => {
     (async () => {
       try {
         const response = await fetch(url);
-        console.log(response);
         if (!response.ok) {
           // solution for fetch not treating 4.. and 5.. codes as errors (or use Axios)
           setIsError(true);
@@ -19,7 +18,6 @@ const MultipleReturnsFetchData = () => {
           return;
         }
         const data = await response.json();
-        console.log(data);
         setUser(data);
       } catch (error) {
         //fetch will not throw error when response status is 4.. or 5.. (i.e. 404)
@@ -41,7 +39,9 @@ const MultipleReturnsFetchData = () => {
   if (isError) {
     return <h2>There was an error...</h2>;
   }
-  console.log(user);
+
+  const { avatar_url, name, company, bio } = user;
+
   return (
     <>
       <article
@@ -56,12 +56,12 @@ const MultipleReturnsFetchData = () => {
       >
         <img
           style={{ marginBottom: "20px", width: "120px", borderRadius: "15px" }}
-          src={user.avatar_url}
-          alt={user.name}
+          src={avatar_url}
+          alt={name}
         />
-        <h2>{user.name}</h2>
-        <p style={{ fontSize: "1.25rem" }}>works at: {user.company}</p>
-        <p>{user.bio}</p>
+        <h2>{name}</h2>
+        <p style={{ fontSize: "1.25rem" }}>works at: {company}</p>
+        <p>{bio}</p>
       </article>
     </>
   );
