@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const url = "https://api.github.com/users/QuincyLarson";
+const url = "https://api.github.com/users/QuincyLarsonp";
 
 const MultipleReturnsFetchData = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,10 +11,18 @@ const MultipleReturnsFetchData = () => {
     (async () => {
       try {
         const response = await fetch(url);
+        console.log(response);
+        if (!response.ok) {
+          // solution for fetch not treating 4.. and 5.. codes as errors (or use Axios)
+          setIsError(true);
+          setIsLoading(false);
+          return;
+        }
         const data = await response.json();
+        console.log(data);
         setUser(data);
       } catch (error) {
-        //fetch will not throw when it is 404
+        //fetch will not throw error when response status is 4.. or 5.. (i.e. 404)
         setIsError(true);
         console.log(error);
       }
