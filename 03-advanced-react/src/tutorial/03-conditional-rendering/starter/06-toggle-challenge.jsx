@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 
 const ToggleChallenge = () => {
   const [isRendered, setIsRendered] = useState(false);
-  const handleClick = () => {
-    !isRendered ? setIsRendered(true) : setIsRendered(false);
-  };
+  // const handleClick = () => {
+  //   !isRendered ? setIsRendered(true) : setIsRendered(false);
+  // };
 
   return (
     <>
       <h2>toggle challenge</h2>
-      <button className={"btn"} type="button" onClick={handleClick}>
+      <button
+        className={"btn"}
+        type="button"
+        onClick={() => setIsRendered(!isRendered)}
+      >
         toggle component
       </button>
       {isRendered && <TestComponent />}
