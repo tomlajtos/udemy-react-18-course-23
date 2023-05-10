@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ShortCircuitOverview = () => {
   const [text, setText] = useState("");
@@ -7,7 +7,7 @@ const ShortCircuitOverview = () => {
     <>
       <h3>short circuit overview</h3>
       {name && <p>Hello {name}</p>}
-      <p>{text || "we need some text here"}</p>
+      <p>{text || "we need some text here..."}</p>
     </>
   );
 };
