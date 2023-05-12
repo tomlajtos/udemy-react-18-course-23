@@ -2,24 +2,37 @@
 import { useState, useEffect } from "react";
 
 const CleanupFunction = () => {
+  const randomDelay =
+    Math.round(Math.floor(Math.random() * (12000 - 1000 + 1) + 1000) / 1000) *
+    1000;
   const [toggle, setToggle] = useState(false);
   const [isData, setIsData] = useState(false);
-  const [reload, setReload] = useState(false);
+  const [showReload, setShowReload] = useState(false);
   const [count, setCount] = useState(0);
-  const [delay, setDelay] = useState(10000);
+  const [delay, setDelay] = useState(0);
   const [text, setText] = useState("2nd component is loading");
   let [progress, setProgress] = useState(" ");
 
+  useEffect(() => {
+    console.log("in a function");
+  }, []);
+
   const loadComp = () => {
     setToggle(!toggle);
+    setIsData(false);
+    setProgress("");
+    setDelay(randomDelay);
+    setCount(0);
+    showReload ? (setShowReload(false), setDelay(randomDelay)) : showReload;
+    console.log("rel:", showReload);
   };
 
   const reloadComp = () => {
-    setDelay(3000); //this is not working properly... hence TODO
+    setDelay(randomDelay);
     setText("reloading component");
     setCount(0);
     setProgress("");
-    setReload(false);
+    setShowReload(false);
   };
 
   return (
@@ -45,7 +58,7 @@ const CleanupFunction = () => {
           progress={progress}
           setProgress={setProgress}
           delay={delay}
-          setReload={setReload}
+          setShowReload={setShowReload}
         />
       ) : (
         <FirstComp />
@@ -53,7 +66,7 @@ const CleanupFunction = () => {
       <button className={"btn"} type="button" onClick={loadComp}>
         {toggle ? "go back" : "load next"}
       </button>
-      {reload && (
+      {showReload && (
         <button
           className="btn"
           style={{
@@ -82,11 +95,12 @@ const SecondComp = ({
   setIsData,
   progress,
   setProgress,
-  setReload,
+  setShowReload,
   delay,
 }) => {
   // use effect will run every time the component renders, not just at initial render
   // the component mounts/unmounts on button click, basically.
+
   // fake data fetch
   useEffect(() => {
     setTimeout(() => {
@@ -96,14 +110,15 @@ const SecondComp = ({
         setCount(count + 1);
         setProgress((progress += ". "));
       }
-    }, 800);
+    }, 1000);
 
     if (count > 9) {
       setProgress("something ain't right here...try reloading the component");
-      setReload(true);
+      setShowReload(true);
     }
   }, [count]);
   useEffect(() => {
+    console.log(delay);
     if (!isData) {
       setTimeout(() => {
         if (delay < 10000) {
