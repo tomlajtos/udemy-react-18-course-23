@@ -13,10 +13,6 @@ const CleanupFunction = () => {
   const [text, setText] = useState("2nd component is loading");
   let [progress, setProgress] = useState(" ");
 
-  useEffect(() => {
-    console.log("in a function");
-  }, []);
-
   const loadComp = () => {
     setToggle(!toggle);
     setIsData(false);
@@ -24,11 +20,11 @@ const CleanupFunction = () => {
     setDelay(randomDelay);
     setCount(0);
     showReload ? (setShowReload(false), setDelay(randomDelay)) : showReload;
-    console.log("rel:", showReload);
   };
 
   const reloadComp = () => {
-    setDelay(randomDelay);
+    // setDelay(randomDelay);
+    setDelay(10000);
     setText("reloading component");
     setCount(0);
     setProgress("");
@@ -88,6 +84,7 @@ const FirstComp = () => {
   return <h2>This is component 1</h2>;
 };
 
+// examples for useEffect, setInterval, "cleanup function"
 const SecondComp = ({
   count,
   setCount,
@@ -100,6 +97,16 @@ const SecondComp = ({
 }) => {
   // use effect will run every time the component renders, not just at initial render
   // the component mounts/unmounts on button click, basically.
+  // !!! this could be problematic sometimes i.e. with setInsterval(), example below
+  useEffect(() => {
+    console.log("useEffect with setInterval");
+    const intId = setInterval(() => {
+      console.log(
+        // this will run every sec, even when the component is toggled off (still runs in the bg)
+        "setInterval will not stop when component is not displayed any more, unless cleanup function is set up"
+      );
+    }, 3000);
+  }, []);
 
   // fake data fetch
   useEffect(() => {
