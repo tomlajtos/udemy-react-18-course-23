@@ -1,6 +1,6 @@
-//TODO: figure out re-render function for 2nd component
 import { useState, useEffect } from "react";
 
+// Went a bit crazy with useState abd useEffect hooks in order to practice them...
 const CleanupFunction = () => {
   const randomDelay =
     Math.round(Math.floor(Math.random() * (12000 - 1000 + 1) + 1000) / 1000) *
@@ -23,8 +23,7 @@ const CleanupFunction = () => {
   };
 
   const reloadComp = () => {
-    // setDelay(randomDelay);
-    setDelay(10000);
+    setDelay(randomDelay);
     setText("reloading component");
     setCount(0);
     setProgress("");
@@ -35,6 +34,7 @@ const CleanupFunction = () => {
     <>
       <h2>cleanup function </h2>
       <hr style={{ margin: "20px auto" }} />
+
       {!isData && toggle && (
         <div>
           <h2>{text}</h2>
@@ -45,6 +45,7 @@ const CleanupFunction = () => {
           </h3>
         </div>
       )}
+
       {toggle ? (
         <SecondComp
           isData={isData}
@@ -59,9 +60,11 @@ const CleanupFunction = () => {
       ) : (
         <FirstComp />
       )}
+
       <button className={"btn"} type="button" onClick={loadComp}>
         {toggle ? "go back" : "load next"}
       </button>
+
       {showReload && (
         <button
           className="btn"
@@ -84,7 +87,12 @@ const FirstComp = () => {
   return <h2>This is component 1</h2>;
 };
 
-// examples for useEffect, setInterval, "cleanup function"
+/** Second Component
+ * =======================================
+ * examples for:
+ * - useEffect +,
+ * - setInterval +,
+ * - eventListener + "cleanup function" */
 const SecondComp = ({
   count,
   setCount,
@@ -116,6 +124,15 @@ const SecondComp = ({
     };
   }, []);
 
+  // Event listeners example
+  useEffect(() => {
+    console.log("useEffect with eventListener");
+    const testFunc = () => {
+      // logic comes here
+    };
+    window.addEventListener("scroll", testFunc);
+  }, []);
+
   // fake data fetch
   useEffect(() => {
     const toutId = setTimeout(() => {
@@ -138,8 +155,8 @@ const SecondComp = ({
       console.log("%c setTimeout-1 is cleared", "color: orange");
     };
   }, [count]);
+
   useEffect(() => {
-    console.log(delay);
     if (!isData) {
       const toutId = setTimeout(() => {
         if (delay < 10000) {
@@ -157,7 +174,7 @@ const SecondComp = ({
   return <>{isData && count < 10 && <Data />}</>;
 };
 
-// test data for fake fatch
+// Test data for fake fatch
 const Data = () => {
   return (
     <div>
