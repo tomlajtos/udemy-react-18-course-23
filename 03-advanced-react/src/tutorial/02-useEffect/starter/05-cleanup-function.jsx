@@ -106,6 +106,14 @@ const SecondComp = ({
         "setInterval will not stop when component is not displayed any more, unless cleanup function is set up"
       );
     }, 3000);
+    // CLEANUP FUNCTION
+    return () => {
+      console.log(
+        "%cCleanup Function: stopping the setInterval after the component is not rendered",
+        "color: orange"
+      );
+      clearInterval(intId);
+    };
   }, []);
 
   // fake data fetch
