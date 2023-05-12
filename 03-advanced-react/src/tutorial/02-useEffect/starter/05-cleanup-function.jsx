@@ -105,7 +105,7 @@ const SecondComp = ({
         // this will run every sec, even when the component is toggled off (still runs in the bg)
         "setInterval will not stop when component is not displayed any more, unless cleanup function is set up"
       );
-    }, 3000);
+    }, 10000);
     // CLEANUP FUNCTION
     return () => {
       console.log(
@@ -118,7 +118,7 @@ const SecondComp = ({
 
   // fake data fetch
   useEffect(() => {
-    setTimeout(() => {
+    const toutId = setTimeout(() => {
       // !isData && count < 10 ? setCount(count + 1) : isData;
       // setProgress((progress += ". "));
       if (!isData && count < 10) {
@@ -131,15 +131,26 @@ const SecondComp = ({
       setProgress("something ain't right here...try reloading the component");
       setShowReload(true);
     }
+
+    // CLEANUP FUNCTION
+    return () => {
+      clearTimeout(toutId);
+      console.log("%c setTimeout-1 is cleared", "color: orange");
+    };
   }, [count]);
   useEffect(() => {
     console.log(delay);
     if (!isData) {
-      setTimeout(() => {
+      const toutId = setTimeout(() => {
         if (delay < 10000) {
           setIsData(true);
         }
       }, delay);
+      // CLEANUP FUNCTION
+      return () => {
+        clearTimeout(toutId);
+        console.log("%c setTimeout-2 is cleared", "color: orange");
+      };
     }
   }, [delay]);
 
