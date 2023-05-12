@@ -3,24 +3,54 @@ import { useState, useEffect } from "react";
 
 const CleanupFunction = () => {
   const [toggle, setToggle] = useState(false);
+  const [isData, setIsData] = useState(false);
   const [reload, setReload] = useState(false);
+  const [count, setCount] = useState(0);
+  const [delay, setDelay] = useState(10000);
   const [text, setText] = useState("2nd component is loading");
-  const [delay, setDelay] = useState(9000);
+  let [progress, setProgress] = useState(" ");
 
-  const load = () => {
+  const loadComp = () => {
     setToggle(!toggle);
+  };
+
+  const reloadComp = () => {
+    setDelay(3000); //this is not working properly... hence TODO
+    setText("reloading component");
+    setCount(0);
+    setProgress("");
+    setReload(false);
   };
 
   return (
     <>
-      <h2>cleanup function</h2>
+      <h2>cleanup function </h2>
       <hr style={{ margin: "20px auto" }} />
+      {!isData && toggle && (
+        <div>
+          <h2>{text}</h2>
+          <h3>
+            <span style={{ visibility: "hidden" }}>[</span>
+            {progress}
+            <span style={{ visibility: "hidden" }}>]</span>
+          </h3>
+        </div>
+      )}
       {toggle ? (
-        <SecondComp setReload={setReload} delay={delay} text={text} />
+        <SecondComp
+          isData={isData}
+          setIsData={setIsData}
+          count={count}
+          setCount={setCount}
+          progress={progress}
+          setProgress={setProgress}
+          delay={delay}
+          setReload={setReload}
+        />
       ) : (
         <FirstComp />
       )}
-      <button className={"btn"} type="button" onClick={load}>
+      <button className={"btn"} type="button" onClick={loadComp}>
         {toggle ? "go back" : "load next"}
       </button>
       {reload && (
@@ -32,13 +62,8 @@ const CleanupFunction = () => {
             marginLeft: "10px",
           }}
           type="button"
-          onClick={() => {
-            setDelay(1000); //this is not working properly... hence TODO
-            setText("reloading component");
-            setReload(false);
-          }}
+          onClick={reloadComp}
         >
-          {" "}
           reload
         </button>
       )}
@@ -50,43 +75,45 @@ const FirstComp = () => {
   return <h2>This is component 1</h2>;
 };
 
-const SecondComp = ({ setReload, delay, text }) => {
-  const [count, setCount] = useState(0);
-  const [isData, setIsData] = useState(false);
-  let [progress, setProgress] = useState(". ");
-
+const SecondComp = ({
+  count,
+  setCount,
+  isData,
+  setIsData,
+  progress,
+  setProgress,
+  setReload,
+  delay,
+}) => {
   // use effect will run every time the component renders, not just at initial render
-  // the component mounts/unmounts on button click, basically
+  // the component mounts/unmounts on button click, basically.
+  // fake data fetch
   useEffect(() => {
-    console.log("useEffect...");
     setTimeout(() => {
-      setProgress((progress += ". "));
-      !isData ? setCount(count + 1) : isData;
+      // !isData && count < 10 ? setCount(count + 1) : isData;
+      // setProgress((progress += ". "));
+      if (!isData && count < 10) {
+        setCount(count + 1);
+        setProgress((progress += ". "));
+      }
     }, 800);
 
-    setTimeout(() => {
-      setIsData(true);
-    }, delay);
-
-    if (count >= 10) {
+    if (count > 9) {
+      setProgress("something ain't right here...try reloading the component");
       setReload(true);
     }
-  }, [count, delay]);
+  }, [count]);
+  useEffect(() => {
+    if (!isData) {
+      setTimeout(() => {
+        if (delay < 10000) {
+          setIsData(true);
+        }
+      }, delay);
+    }
+  }, [delay]);
 
-  return (
-    <>
-      {!isData && count < 10 ? (
-        <div>
-          <h2>{text}</h2>
-          <h2>{progress}</h2>
-        </div>
-      ) : !isData || count >= 10 ? (
-        <h2>something ain't right here...refresh the browser maybe?</h2>
-      ) : (
-        <Data />
-      )}
-    </>
-  );
+  return <>{isData && count < 10 && <Data />}</>;
 };
 
 // test data for fake fatch
