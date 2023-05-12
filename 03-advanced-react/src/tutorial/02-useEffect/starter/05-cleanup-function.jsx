@@ -131,6 +131,10 @@ const SecondComp = ({
       // logic comes here
     };
     window.addEventListener("scroll", testFunc);
+    // CLEANUP FUNCTION removes the EventListener when the component is not rendered
+    return () => {
+      window.removeEventListener("scroll", testFunc);
+    };
   }, []);
 
   // fake data fetch
